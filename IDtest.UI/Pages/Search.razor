@@ -1,0 +1,33 @@
+﻿@page "/search"
+
+<h1>Search Example</h1>
+
+<p>Filter: @Code</p>
+
+<p>Page: @State</p>
+
+@if (Stars is not null)
+{
+    <p>Assignees:</p>
+
+    <ul>
+        @foreach (var name in Stars)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "code")]
+    public string? Code { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? State { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "star")]
+    public string[]? Stars { get; set; }
+}
